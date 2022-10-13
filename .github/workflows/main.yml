@@ -4,15 +4,7 @@ env:
   CADIE_JWT_SECRET_KEY:  ${{ sercets.CADIE_JWT_SECRET_KEY}}
 
 name: CI RSpec Tests
-
 on: [push, pull_request]
-  push:
-   paths:
-   - 'api/**'
-  pull_request:
-    paths:
-    - 'api/**'
-
 jobs:
    rspec-test:
     name: CI
