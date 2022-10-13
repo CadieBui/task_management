@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
 
   # 設定 Rails 的時區
   def set_timezone
-    Time.zone = current_user.time_zone if current_user&.time_zone
+    Time.zone = "Taipei"
   end
 end
