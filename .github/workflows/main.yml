@@ -1,0 +1,58 @@
+env:
+  TEST_USERNAME: testusername
+  TEST_PASSWORD: testpassword
+  CADIE_JWT_SECRET_KEY:  ${{ sercets.CADIE_JWT_SECRET_KEY}}
+
+name: CI RSpec Tests
+
+on: [push, pull_request]
+  push:
+   paths:
+   - 'api/**'
+  pull_request:
+    paths:
+    - 'api/**'
+
+jobs:
+   rspec-test:
+    name: CI
+    runs-on: ubuntu-latest
+    env:
+      api-dir: ./api 
+
+    services:
+      postgres:
+        image: postgres:11.6
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      env:
+        TEST_USERNAME: ${{ env.TEST_USERNAME }}
+        TEST_PASSWORD: ${{ env.TEST_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+
+      - name: Install postgres client
+        run: sudo apt-get -yqq install libpq-dev
+
+      - name: Run bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Create database
+        run: |
+          bundler exec rails db:create RAILS_ENV=test
+          bundler exec rails db:migrate RAILS_ENV=test
+
+      - name: Run tests
+        run: bundler exec rspec spec/*
+
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
