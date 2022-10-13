@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+  tasklist: "Task  List"
+  new: "Create a new task"
+  goback: "Back to task list"
+  edit: "Edit this task"
+  destroy: "Delete this task"
+  title: "Title"
+  content: "Content"
+  edit_task: "Edit task"
+  show: "Detail"
+  new_task: "Create task"
+
