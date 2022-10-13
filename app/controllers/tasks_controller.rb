@@ -1,26 +1,38 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :find_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
+    # TODO: show all data from Task table 
     @tasks = Task.all
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    #TODO: find and show single task
+    @tasks = Task.find(params[:id])
+ 
+    respond_to do |format|
+      format.html  # show.html.erb
+      format.json  { render :json => @tasks }
+    end
   end
 
   # GET /tasks/new
   def new
+    # TODO: display the create a new task page
     @task = Task.new
   end
 
   # GET /tasks/1/edit
   def edit
+    # TODO: edit a single task
+    @task = Task.find(params[:id])
   end
 
   # POST /tasks or /tasks.json
   def create
+    # TODO: after press submit button => create a new task
     @task = Task.new(task_params)
 
     respond_to do |format|
@@ -36,6 +48,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
+    # TODO: after press submit button => update a single task 
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
@@ -49,6 +62,7 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
+    # TODO: delete a single task
     @task.destroy
 
     respond_to do |format|
@@ -59,7 +73,7 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_task
+    def find_task
       @task = Task.find(params[:id])
     end
 
