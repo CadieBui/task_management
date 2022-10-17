@@ -8,14 +8,20 @@ RSpec.describe "Tasks", type: :system do
 
   # success case in create
   scenario "valid title and content in create" do  
-    run_create_task(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+    title = Faker::Lorem.sentence
+    content = Faker::Lorem.sentence
+    run_create_task(title: title, content: content)
     expect(page).to have_content("Task was successfully created")
+    expect(Task.find_by(title: title, content: content)).to be_present
   end
 
   # success case in edit
   scenario "valid title and content in edit" do  
-    run_edit_task(title: Faker::Lorem.sentence, content: Faker::Lorem.sentence)
+    title = Faker::Lorem.sentence
+    content = Faker::Lorem.sentence
+    run_edit_task(title: title, content: content)
     expect(page).to have_content("Task was successfully updated")
+    expect(Task.find_by(title: title, content: content)).to be_present
   end
 
   # success case in delete
@@ -32,13 +38,15 @@ RSpec.describe "Tasks", type: :system do
 
   # error case in create
   scenario "empty title in create " do       
-    run_create_task(title:'', content: Faker::Lorem.sentence)
+    content = Faker::Lorem.sentence
+    run_create_task(title:'', content: content)
     expect(page).to have_content("Title can't be blank Title is too short (minimum is 5 characters)")
   end
 
   # error case in create
   scenario "empty content in create " do  
-    run_create_task(title: Faker::Lorem.sentence, content: '')
+    title = Faker::Lorem.sentence
+    run_create_task(title: title, content: '')
     expect(page).to have_content("Content can't be blank Content is too short (minimum is 5 characters)")
   end
 
@@ -50,13 +58,15 @@ RSpec.describe "Tasks", type: :system do
 
   # error case in edit
   scenario "empty title in edit " do       
-    run_edit_task(title:'', content: Faker::Lorem.sentence)
+    content = Faker::Lorem.sentence
+    run_edit_task(title:'', content: content)
     expect(page).to have_content("Title can't be blank Title is too short (minimum is 5 characters)")
   end
 
   # error case in edit
   scenario "empty content in edit " do  
-    run_edit_task(title: Faker::Lorem.sentence, content: '')
+    title = Faker::Lorem.sentence
+    run_edit_task(title: title, content: '')
     expect(page).to have_content("Content can't be blank Content is too short (minimum is 5 characters)")
   end 
 
