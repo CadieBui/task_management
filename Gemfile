@@ -53,6 +53,16 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+<<<<<<< HEAD
+=======
+  # See https://github.com/rspec/rspec-rails 
+  gem 'rspec-rails', '~> 6.0.0'
+  # See https://github.com/thoughtbot/factory_bot_rails && https://www.betterspecs.org/
+  gem "factory_bot_rails"
+  # See https://github.com/faker-ruby/faker
+  gem 'faker'
+
+>>>>>>> origin
 end
 
 group :development do
@@ -71,7 +81,12 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 # See https://ihower.tw/rails/i18n.html
 gem 'rails-i18n'
+end
+
+# Code formatter, see https://github.com/rubocop/rubocop
+gem 'rubocop'
