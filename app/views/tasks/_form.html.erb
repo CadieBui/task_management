@@ -2,7 +2,7 @@
   <% if task.errors.any? %>
     <div style="color: red">
       <h2>
-        <%= pluralize(task.errors.count, "error")%><%= t(:error_sentence)%>
+        <%= pluralize(task.errors.count, "error")%><%= t('forms.error_sentence')%>
       </h2>
 
       <ul>
@@ -14,16 +14,16 @@
   <% end %>
 
   <div>
-    <%= form.label :title, t(:title), style: "display: block" %>
+    <%= form.label :title, t('forms.field_label.title'), style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :content, t(:content), style: "display: block" %>
+    <%= form.label :content, t('forms.field_label.content'), style: "display: block" %>
     <%= form.text_area :content %>
   </div>
 
   <div>
-    <%= form.submit t(:submit)%>
+    <%= form.submit t('forms.button.submit')%>
   </div>
 <% end %>

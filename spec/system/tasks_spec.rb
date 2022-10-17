@@ -11,7 +11,7 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     run_create_task(title: title, content: content)
-    expect(page).to have_content I18n.t(:successfully_create)
+    expect(page).to have_content I18n.t('forms.create.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
 
@@ -20,14 +20,14 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     run_edit_task(title: title, content: content)
-    expect(page).to have_content I18n.t(:successfully_update)
+    expect(page).to have_content I18n.t('forms.edit.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
 
   # success case in delete
   scenario "deleted successfully" do  
     run_delete_task
-    expect(page).to have_content I18n.t(:successfully_delete)
+    expect(page).to have_content I18n.t('forms.delete.success')
   end
 
   # error case in create
@@ -76,24 +76,24 @@ RSpec.describe "Tasks", type: :system do
     # test create task
     def run_create_task(title:, content:)
       visit new_task_path
-      fill_in I18n.t(:title), with: title
-      fill_in I18n.t(:content), with: content
-      click_button I18n.t(:submit)
+      fill_in I18n.t('forms.field_label.title'), with: title
+      fill_in I18n.t('forms.field_label.content'), with: content
+      click_button I18n.t('forms.button.submit')
     end
 
     # test edit task
     def run_edit_task(title:, content:)
       task = create(:task)
       visit(edit_task_path(task.id))
-      fill_in I18n.t(:title), with: title
-      fill_in I18n.t(:content), with: content
-      click_button I18n.t(:submit)
+      fill_in I18n.t('forms.field_label.title'), with: title
+      fill_in I18n.t('forms.field_label.content'), with: content
+      click_button I18n.t('forms.button.submit')
     end
 
     # test delete task
     def run_delete_task
       task = create(:task)
       visit(task_path(task.id))
-      click_button I18n.t(:destroy)
+      click_button I18n.t('forms.button.destroy')
     end
 end

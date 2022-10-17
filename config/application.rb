@@ -23,6 +23,7 @@ module TaskManagement
 
     # 將網站中的中文部分共用化
     config.i18n.default_locale = 'zh-TW'
+
     # See https://pjchender.dev/ruby-on-rails/ruby-on-rails-time-helper/
     config.time_zone = 'Taipei'
   end

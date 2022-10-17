@@ -37,7 +37,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: t(:successfully_create) }
+        format.html { redirect_to task_url(@task), notice: t('forms.create.success') }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     # TODO: after press submit button => update a single task 
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: t(:successfully_update) }
+        format.html { redirect_to task_url(@task), notice: t('forms.edit.success') }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: t(:successfully_delete) }
+      format.html { redirect_to tasks_url, notice: t('forms.delete.success') }
       format.json { head :no_content }
     end
   end

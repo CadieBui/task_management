@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= t(:tasklist) %></h1>
+<h1><%= t('page_title.tasklist') %></h1>
 
 <table id="tasks">
   <thead>
-    <th><%= t(:title)%></th>
-    <th><%= t(:content)%></th>
+    <th><%= t('forms.field_label.title')%></th>
+    <th><%= t('forms.field_label.content')%></th>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
@@ -21,4 +21,4 @@
   </tbody>
 </table>
 <br>
-<%= link_to t(:new), new_task_path %>
+<%= link_to t('forms.button.new'), new_task_path %>
