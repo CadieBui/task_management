@@ -1,16 +1,32 @@
 zh-TW:
-  tasklist: "任務列表"
+  # label
+  title: "標題"
+  content: "內容"
+
+  # button
   new: "新增"
   goback: "返回列表"
   edit: "編輯"
   destroy: "刪除"
-  title: "標題"
-  content: "內容"
+  show: "詳細"
+  submit: "確認"
+
+  # page title
+  tasklist: "任務列表"
   edit_task: "修改任務"
-  show: "詳細內容"
+  show_task: "詳細內容"
   new_task: "新增任務"
+  
+  # message
+  error_sentence: '禁止保存此任務'
+  successfully_create: '任務新增成功' 
+  successfully_update: '任務更新成功' 
+  successfully_delete: '任務刪除成功' 
 
   activerecord:
+    attributes:
+      title: "標題"
+      content: "內容"
     errors:
       messages:
         record_invalid: 校驗失敗：%{errors}
@@ -94,6 +110,7 @@ zh-TW:
       year: 年
   errors:
     format: "%{attribute}%{message}"
+
     messages:
       accepted: 必須是可被接受的
       blank: 不能為空白

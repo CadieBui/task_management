@@ -30,15 +30,26 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  tasklist: "Task  List"
+  # label
+  title: "Title"
+  content: "Content"
+  
+  # button
   new: "Create a new task"
   goback: "Back to task list"
   edit: "Edit this task"
   destroy: "Delete this task"
-  title: "Title"
-  content: "Content"
+  # page title
+  tasklist: "Task List"
   edit_task: "Edit task"
   show: "Detail"
+  show_task: "Detail"
   new_task: "Create task"
+  submit: "Submit"
+  # message
+  error_sentence: " prohibited this task from being saved:"
+  successfully_create: 'Task was successfully created' 
+  successfully_update: 'Task was successfully updated' 
+  successfully_delete: 'Task was successfully destroyed' 
+
 
