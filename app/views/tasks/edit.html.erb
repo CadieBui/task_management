@@ -1,11 +1,11 @@
-<h1>Editing task</h1>
+<h1><%= t('page_title.edit_task')%></h1>
 
 <%= render "form", task: @task %>
 
 <br>
 
 <div>
-  <%= link_to "Show this task", @task %> 
+  <%= link_to t('forms.button.show'), @task %> 
   <br>
-  <%= link_to "Back to tasks", tasks_path %>
+  <%= link_to t('forms.button.goback'), tasks_path %>
 </div>

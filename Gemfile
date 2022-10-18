@@ -81,5 +81,8 @@ group :test do
   gem 'shoulda-matchers', '~> 5.0'
 end
 
+# See https://ihower.tw/rails/i18n.html
+gem 'rails-i18n'
+
 # Code formatter, see https://github.com/rubocop/rubocop
 gem 'rubocop'
