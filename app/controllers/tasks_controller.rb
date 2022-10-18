@@ -4,14 +4,14 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     # TODO: show all data from Task table 
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :desc).all
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
     #TODO: find and show single task
     @tasks = Task.find(params[:id])
- 
+
     respond_to do |format|
       format.html  # show.html.erb
       format.json  { render :json => @tasks }
@@ -70,7 +70,6 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_task
