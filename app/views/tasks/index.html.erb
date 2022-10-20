@@ -6,6 +6,8 @@
   <thead>
     <th><%= t('forms.field_label.title')%></th>
     <th><%= t('forms.field_label.content')%></th>
+    <th><%= t('forms.field_label.endtime')%></th>
+
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
@@ -15,6 +17,9 @@
         </td>
         <td>
           <%= task.content %>
+        </td>
+        <td>
+          <%= task.endtime %>
         </td>
       </tr>
     <% end %>

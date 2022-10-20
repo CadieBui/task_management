@@ -39,6 +39,7 @@ en:
     field_label:
       title: "Title"
       content: "Content"
+      endtime: "Deadline"
     create:
       success: 'Task was successfully created' 
     edit:
