@@ -81,7 +81,7 @@ RSpec.describe "Tasks", type: :system do
     run_create_task(title: task_old_title, content: task_old_content)
     run_create_task(title: task_new_title, content: task_new_content)
     visit tasks_path
-    expect(page).to have_content("This is a new task title This is a new task content This is a old task title This is a old task content")
+    expect(page).to have_content("#{task_new_title} #{task_new_content} #{task_old_title} #{task_old_content}")
   end 
 
   private
