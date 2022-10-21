@@ -53,7 +53,8 @@ en:
       destroy: "Delete this task"
       show: "Detail"
     error_sentence: " prohibited this task from being saved:"
-  
+  sort:
+    created_at: "Sort by create time switch"
   
 
 

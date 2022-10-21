@@ -72,6 +72,18 @@ RSpec.describe "Tasks", type: :system do
     expect(page).to have_content("error")
   end 
 
+  # success case in show list sort by create time
+  scenario "list sort by create time " do  
+    task_old_title = "This is a old task title"
+    task_old_content = "This is a old task content"
+    task_new_title = "This is a new task title"
+    task_new_content = "This is a new task content"
+    run_create_task(title: task_old_title, content: task_old_content)
+    run_create_task(title: task_new_title, content: task_new_content)
+    visit tasks_path
+    expect(page).to have_content("#{task_new_title} #{task_new_content} #{task_old_title} #{task_old_content}")
+  end 
+
   private
     # test create task
     def run_create_task(title:, content:)

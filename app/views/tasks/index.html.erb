@@ -1,7 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <h1><%= t('page_title.tasklist') %></h1>
-
+<span>
+  <%= sortable "created_at" %> 
+</span>
 <table id="tasks">
   <thead>
     <th><%= t('forms.field_label.title')%></th>

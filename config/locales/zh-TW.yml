@@ -22,7 +22,8 @@ zh-TW:
       destroy: "刪除"
       show: "詳細"
     error_sentence: '禁止保存此任務'
-  
+  sort:
+    created_at: "建立時間排序切換"
   activerecord:
     errors:
       messages:

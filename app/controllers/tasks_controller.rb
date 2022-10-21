@@ -1,17 +1,22 @@
 class TasksController < ApplicationController
   before_action :find_task, only: %i[ show edit update destroy ]
+  helper_method :sort_by, :sort_dir
 
   # GET /tasks or /tasks.json
   def index
     # TODO: show all data from Task table 
-    @tasks = Task.all
+    if sort_by and sort_dir
+      @tasks = Task.order(sort_by + ' ' + sort_dir)
+    else
+      @tasks = Task.all()
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
     #TODO: find and show single task
     @tasks = Task.find(params[:id])
- 
+
     respond_to do |format|
       format.html  # show.html.erb
       format.json  { render :json => @tasks }
@@ -70,7 +75,6 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_task
@@ -80,5 +84,14 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:title, :content)
+    end
+
+    def sort_by
+      Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+      params[:sort] || "created_at"
+    end
+
+    def sort_dir
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end
