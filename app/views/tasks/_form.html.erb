@@ -17,10 +17,15 @@
     <%= form.label :title, t('forms.field_label.title'), style: "display: block" %>
     <%= form.text_field :title %>
   </div>
-
+  
   <div>
     <%= form.label :content, t('forms.field_label.content'), style: "display: block" %>
     <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :endtime, t('forms.field_label.endtime'), style: "display: block" %>
+    <%= form.date_field :endtime %>
   </div>
 
   <div>

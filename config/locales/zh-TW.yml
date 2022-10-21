@@ -8,6 +8,7 @@ zh-TW:
     field_label:
       title: "標題"
       content: "內容"
+      endtime: "結束任務時間"
     create:
       success: '任務新增成功' 
     edit:
