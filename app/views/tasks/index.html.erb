@@ -1,13 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
 <h1><%= t('page_title.tasklist') %></h1>
+
+<%= render "search_form", task: @task %>
+
 <span>
-  <%= sortable "created_at" %> 
+  <%= sort_link(@q, :created_at, default_order: :desc) do %>
+    <strong><%=t('sort.created_at')%></strong>
+  <% end %>
 </span>
+
 <table id="tasks">
   <thead>
     <th><%= t('forms.field_label.title')%></th>
     <th><%= t('forms.field_label.content')%></th>
+    <th><%= t('forms.field_label.task_status')%></th>
     <th><%= t('forms.field_label.endtime')%></th>
 
   </thead>
@@ -21,11 +28,15 @@
           <%= task.content %>
         </td>
         <td>
+          <%= task.status_i18n %>
+        </td>
+        <td>
           <%= task.endtime %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <br>
 <%= link_to t('forms.button.new'), new_task_path %>

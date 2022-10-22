@@ -9,6 +9,7 @@ zh-TW:
       title: "標題"
       content: "內容"
       endtime: "結束任務時間"
+      task_status: "狀態"
     create:
       success: '任務新增成功' 
     edit:
@@ -22,6 +23,16 @@ zh-TW:
       edit: "編輯"
       destroy: "刪除"
       show: "詳細"
+    enum:
+      status_enum:
+        all_status: "全部"
+        not_set: "未設定"
+        pending: "待處理"
+        inprogress: "進行中"
+        completed: "完成"
+    search:
+      title: "搜尋標題"
+      task_status: '搜尋狀態'
     error_sentence: '禁止保存此任務'
   sort:
     created_at: "建立時間排序切換"
@@ -32,6 +43,8 @@ zh-TW:
         restrict_dependent_destroy:
           has_one: 由於%{record}需要此記錄，所以無法移除記錄
           has_many: 由於%{record}需要此記錄，所以無法移除記錄
+    attributes:
+      task_status: "狀態"
   date:
     abbr_day_names:
     - 周日

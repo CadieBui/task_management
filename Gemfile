@@ -86,3 +86,6 @@ gem 'rails-i18n'
 
 # Code formatter, see https://github.com/rubocop/rubocop
 gem 'rubocop'
+
+gem 'ransack'
+gem 'translate_enum'

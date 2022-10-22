@@ -24,8 +24,13 @@
   </div>
 
   <div>
+    <%= form.label :task_status, t('forms.field_label.task_status'), style: "display: block" %>
+    <%= form.select :task_status, Task.task_statuses.keys.collect { |g| [t("forms.enum.status_enum.#{g.downcase}"), g] }, {}, { class: "form-control" } %>
+  </div>
+
+  <div>
     <%= form.label :endtime, t('forms.field_label.endtime'), style: "display: block" %>
-    <%= form.date_field :endtime %>
+    <%= form.date_field :endtime%>
   </div>
 
   <div>

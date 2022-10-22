@@ -40,6 +40,7 @@ en:
       title: "Title"
       content: "Content"
       endtime: "Deadline"
+      task_status: "Status"
     create:
       success: 'Task was successfully created' 
     edit:
@@ -53,6 +54,16 @@ en:
       edit: "Edit this task"
       destroy: "Delete this task"
       show: "Detail"
+    enum:
+      status_enum:
+        all_status: "All status"
+        not_set: "Unset"
+        pending: "Pending"
+        inprogress: "In progress"
+        completed: "Completed"
+    search:
+      title: "Search by title"
+      task_status: 'Search by status'
     error_sentence: " prohibited this task from being saved:"
   sort:
     created_at: "Sort by create time switch"
