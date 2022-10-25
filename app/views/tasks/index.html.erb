@@ -15,6 +15,7 @@
     <th><%= t('forms.field_label.title')%></th>
     <th><%= t('forms.field_label.content')%></th>
     <th><%= t('forms.field_label.task_status')%></th>
+    <th><%= t('forms.field_label.priority')%></th>
     <th><%= t('forms.field_label.endtime')%></th>
 
   </thead>
@@ -28,7 +29,10 @@
           <%= task.content %>
         </td>
         <td>
-          <%= task.translated_status%>
+          <%= task.translated_status %>
+        </td>
+        <td>
+          <%= task.translated_priority %>
         </td>
         <td>
           <%= task.endtime %>

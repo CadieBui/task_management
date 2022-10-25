@@ -20,9 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_162059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "endtime"
-    t.integer "task_status", default: 0
+    t.integer "status", default: 0
     t.integer "priority", default: 0
-    t.index ["task_status"], name: "index_tasks_on_task_status"
+    t.index ["status"], name: "index_tasks_on_status"
   end
 
 end

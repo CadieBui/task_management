@@ -7,10 +7,10 @@ zh-TW:
           pending: "待處理"
           inprogress: "進行中"
           completed: "完成"
-        # priority_list:
-        #   high: "優先度高"
-        #   medium: "優先度中"
-        #   low: "優先度低"
+        priority_list:
+          high: "優先度高"
+          medium: "優先度中"
+          low: "優先度低"
     errors:
       messages:
         record_invalid: 校驗失敗：%{errors}
@@ -49,11 +49,11 @@ zh-TW:
         pending: "待處理"
         inprogress: "進行中"
         completed: "完成"
-      # priority_enum:
-      #   all_priority: "全部"
-      #   high: "優先度高"
-      #   medium: "優先度中"
-      #   low: "優先度低"
+      priority_enum:
+        all_priority: "全部"
+        high: "優先度高"
+        medium: "優先度中"
+        low: "優先度低"
     search:
       title: "搜尋標題"
       task_status: '搜尋狀態'

@@ -62,11 +62,11 @@ en:
         pending: "Pending"
         inprogress: "In progress"
         completed: "Completed"
-      # priority_enum:
-      #   all_priority: "All priority"
-      #   high: "High priority"
-      #   medium: "Medium priority"
-      #   low: "Low priority"
+      priority_enum:
+        all_priority: "All priority"
+        high: "High priority"
+        medium: "Medium priority"
+        low: "Low priority"
     search:
       title: "Search by title"
       task_status: 'Search by status'
@@ -81,8 +81,8 @@ en:
           pending: "Pending"
           inprogress: "In progress"
           completed: "Completed"
-        # priority_list:
-        #   high: "High priority"
-        #   medium: "Medium priority"
-        #   low: "Low priority"
+        priority_list:
+          high: "High priority"
+          medium: "Medium priority"
+          low: "Low priority"
 

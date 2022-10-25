@@ -2,7 +2,7 @@
   <%= f.label :title_cont , t('forms.search.title')%>
   <%= f.search_field :title_cont %>
 
-  <%= f.label :task_status_eq , t('forms.search.task_status')%>
-  <%= f.select :task_status_eq, options_for_select(Task.i18n_stages, @task_status_eq_selection),prompt: t('forms.enum.status_enum.all_status')   %> 
+  <%= f.label :status_eq , t('forms.search.task_status')%>
+  <%= f.select :status_eq, options_for_select(Task.i18n_stages),include_blank:  t('forms.enum.status_enum.all_status') %> 
   <%= f.submit name: "Search" %>
 <% end %>
