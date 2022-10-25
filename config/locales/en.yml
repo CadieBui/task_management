@@ -41,6 +41,7 @@ en:
       content: "Content"
       endtime: "Deadline"
       task_status: "Status"
+      priority: "Priority"
     create:
       success: 'Task was successfully created' 
     edit:
@@ -61,12 +62,27 @@ en:
         pending: "Pending"
         inprogress: "In progress"
         completed: "Completed"
+      # priority_enum:
+      #   all_priority: "All priority"
+      #   high: "High priority"
+      #   medium: "Medium priority"
+      #   low: "Low priority"
     search:
       title: "Search by title"
       task_status: 'Search by status'
     error_sentence: " prohibited this task from being saved:"
   sort:
     created_at: "Sort by create time switch"
-  
-
+  activerecord:
+    attributes:
+      task:
+        status_list:
+          not_set: "Unset"
+          pending: "Pending"
+          inprogress: "In progress"
+          completed: "Completed"
+        # priority_list:
+        #   high: "High priority"
+        #   medium: "Medium priority"
+        #   low: "Low priority"
 

@@ -11,7 +11,8 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     endtime = Time.now
-    run_create_task(title: title, content: content, endtime: endtime, task_status: 1)
+    status = 'pending'
+    run_create_task(title: title, content: content, endtime: endtime, task_status: status)
     expect(page).to have_content I18n.t('forms.create.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
@@ -21,7 +22,8 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     endtime = ""
-    run_create_task(title: title, content: content, endtime: endtime, task_status: 3)
+    status = 'pending'
+    run_create_task(title: title, content: content, endtime: endtime, task_status: status)
     expect(page).to have_content I18n.t('forms.create.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
@@ -31,7 +33,8 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     endtime = Time.now
-    run_edit_task(title: title, content: content, endtime: endtime, task_status: 3)
+    status = 'pending'
+    run_edit_task(title: title, content: content, endtime: endtime, task_status: status)
     expect(page).to have_content I18n.t('forms.edit.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
@@ -41,7 +44,8 @@ RSpec.describe "Tasks", type: :system do
     title = Faker::Lorem.sentence
     content = Faker::Lorem.sentence
     endtime = ""
-    run_edit_task(title: title, content: content, endtime: endtime, task_status: 3)
+    status = 'pending'
+    run_edit_task(title: title, content: content, endtime: endtime, task_status: status)
     expect(page).to have_content I18n.t('forms.edit.success')
     expect(Task.find_by(title: title, content: content)).to be_present
   end
@@ -54,42 +58,47 @@ RSpec.describe "Tasks", type: :system do
 
   # error case in create
   scenario "empty title and content in create" do  
-    run_edit_task(title:'', content: '', endtime: '', task_status: 3)
+    status = 'pending'
+    run_edit_task(title:'', content: '', endtime: '', task_status: status)
     expect(page).to have_content("error")
   end
 
   # error case in create
   scenario "empty title in create " do       
     content = Faker::Lorem.sentence
-    run_create_task(title:'', content: content, endtime: Time.current, task_status: 3)
+    status = 'pending'
+    run_create_task(title:'', content: content, endtime: Time.current, task_status: status)
     expect(page).to have_content('error')
-
   end
 
   # error case in create
   scenario "empty content in create " do  
     title = Faker::Lorem.sentence
-    run_create_task(title: title, content: '', endtime: Time.current, task_status: 3)
+    status = 'pending'
+    run_create_task(title: title, content: '', endtime: Time.current, task_status: status)
     expect(page).to have_content("error")
   end
 
   # error case in edit
   scenario "empty title and content in edit" do  
-    run_edit_task(title:'', content: '', endtime: '', task_status: 3)
+    status = 'pending'
+    run_edit_task(title:'', content: '', endtime: '', task_status: status)
     expect(page).to have_content("error")
   end
 
   # error case in edit
   scenario "empty title in edit " do       
     content = Faker::Lorem.sentence
-    run_edit_task(title:'', content: content, endtime: '', task_status: 3)
+    status = 'pending'
+    run_edit_task(title:'', content: content, endtime: '', task_status: status)
     expect(page).to have_content("error")
   end
 
   # error case in edit
   scenario "empty content in edit " do  
     title = Faker::Lorem.sentence
-    run_edit_task(title: title, content: '', endtime: '', task_status: 3)
+    status = 'pending'
+    run_edit_task(title: title, content: '', endtime: '', task_status: status)
     expect(page).to have_content("error")
   end 
 
@@ -102,29 +111,48 @@ RSpec.describe "Tasks", type: :system do
 
   # success case in search list by title and status
   scenario "list search by title and status" do  
+    visit new_task_path
+    title = "This is a test"
+    content = "This is a test content"
+    endtime = ""
+    status = 'pending'
+    run_create_task(title: title, content: content, endtime: endtime, task_status: status)
     visit tasks_path
     fill_in I18n.t('forms.search.title'), with: "This"
-    element = find("#q_task_status_eq > option:nth-child(3)").text
-    select(element, :from => "q_task_status_eq")
+    find("#q_task_status_eq > option[value='pending']").select_option
     find('input[name="Search"]').click
-    expect(page).to have_current_path("/tasks?q[title_cont]=This&q[task_status_eq]=1&Search=%E6%90%9C%E5%B0%8B")  
+    expect(page).to have_content("#{title}")  
+    expect(page).to have_current_path("/tasks?q[title_cont]=This&q[task_status_eq]=pending&Search=%E6%90%9C%E5%B0%8B")  
   end 
 
   # success case in search list by title 
-  scenario "list search by title" do  
+  scenario "list search by title" do
+    visit new_task_path
+    title = "This is a test"
+    content = "This is a test content"
+    endtime = ""
+    status = 'not_set'
+    run_create_task(title: title, content: content, endtime: endtime, task_status: status)  
     visit tasks_path
     fill_in I18n.t('forms.search.title'), with: "This"
     find('input[name="Search"]').click
+    expect(page).to have_content("#{title}")  
     expect(page).to have_current_path("/tasks?q[title_cont]=This&q[task_status_eq]=&Search=%E6%90%9C%E5%B0%8B")  
   end 
 
   # success case in search list by status 
   scenario "list search by status" do  
+    visit new_task_path
+    title = "This is a test"
+    content = "This is a test content"
+    endtime = ""
+    status = 'inprogress'
+    run_create_task(title: title, content: content, endtime: endtime, task_status: status) 
     visit tasks_path
-    element = find("#q_task_status_eq > option:nth-child(3)").text
-    select(element, :from => "q_task_status_eq")
+    find("#q_task_status_eq > option[value='inprogress']").select_option
     find('input[name="Search"]').click
-    expect(page).to have_current_path("/tasks?q[title_cont]=&q[task_status_eq]=1&Search=%E6%90%9C%E5%B0%8B")  
+    expect(page).to have_content("#{status}")  
+    expect(page).to have_current_path("/tasks?q[title_cont]=&q[task_status_eq]=inprogress&Search=%E6%90%9C%E5%B0%8B")  
   end 
 
   private
@@ -134,8 +162,7 @@ RSpec.describe "Tasks", type: :system do
       fill_in I18n.t('forms.field_label.title'), with: title
       fill_in I18n.t('forms.field_label.content'), with: content
       fill_in I18n.t('forms.field_label.endtime'), with: endtime
-      element = find("#task_task_status > option:nth-child(#{task_status})").text
-      select(element, :from => "task_task_status")
+      find("#task_task_status > option[value='#{task_status}']").select_option
       click_button I18n.t('forms.button.submit')
     end
 
@@ -146,8 +173,7 @@ RSpec.describe "Tasks", type: :system do
       fill_in I18n.t('forms.field_label.title'), with: title
       fill_in I18n.t('forms.field_label.content'), with: content
       fill_in I18n.t('forms.field_label.endtime'), with: endtime
-      element = find("#task_task_status > option:nth-child(#{task_status})").text
-      select(element, :from => "task_task_status")
+      find("#task_task_status > option[value='#{task_status}']").select_option
       click_button I18n.t('forms.button.submit')
     end
 

@@ -11,9 +11,8 @@
 
   <p>
     <strong><%= t('forms.field_label.task_status')%>:</strong>
-    <%= task.status_i18n %>
+    <%= @task.translated_status %>
   </p>
-
   <p>
     <strong><%= t('forms.field_label.endtime')%>:</strong>
     <%= task.endtime %>
