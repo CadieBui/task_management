@@ -10,6 +10,15 @@
   </p>
 
   <p>
+    <strong><%= t('forms.field_label.status')%>:</strong>
+    <%= I18n.t task.status, scope: [:forms,:enum, :status_enum] %>
+  </p>
+
+  <p>
+    <strong><%= t('forms.field_label.priority')%>:</strong>
+    <%= I18n.t task.priority, scope: [:forms, :enum, :priority_enum] %>
+  </p>
+  <p>
     <strong><%= t('forms.field_label.endtime')%>:</strong>
     <%= task.endtime %>
   </p>

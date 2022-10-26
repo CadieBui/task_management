@@ -1,15 +1,11 @@
 class TasksController < ApplicationController
   before_action :find_task, only: %i[ show edit update destroy ]
-  helper_method :sort_by, :sort_dir
 
   # GET /tasks or /tasks.json
   def index
-    # TODO: show all data from Task table 
-    if sort_by and sort_dir
-      @tasks = Task.order(sort_by + ' ' + sort_dir)
-    else
-      @tasks = Task.all()
-    end
+    # TODO: show and search data from Task table 
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result(distinct: true)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -83,15 +79,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :endtime)
-    end
-
-    def sort_by
-      Task.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-      params[:sort] || "created_at"
-    end
-
-    def sort_dir
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      params.require(:task).permit(:title, :content, :endtime, :status, :priority)
     end
 end

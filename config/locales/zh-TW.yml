@@ -1,4 +1,11 @@
-zh-TW:  
+zh-TW:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 校驗失敗：%{errors}
+        restrict_dependent_destroy:
+          has_one: 由於%{record}需要此記錄，所以無法移除記錄
+          has_many: 由於%{record}需要此記錄，所以無法移除記錄  
   page_title:
     tasklist: "任務列表"
     edit_task: "修改任務"
@@ -9,6 +16,8 @@ zh-TW:
       title: "標題"
       content: "內容"
       endtime: "結束任務時間"
+      status: "狀態"
+      priority: "優先度"
     create:
       success: '任務新增成功' 
     edit:
@@ -22,16 +31,26 @@ zh-TW:
       edit: "編輯"
       destroy: "刪除"
       show: "詳細"
+    enum:
+      status_enum:
+        all_status: "全部"
+        not_set: "未設定"
+        pending: "待處理"
+        inprogress: "進行中"
+        completed: "完成"
+      priority_enum:
+        all_priority: "全部"
+        not_set_priority: "未設定"
+        high: "優先度高"
+        medium: "優先度中"
+        low: "優先度低"
+    search:
+      title: "搜尋標題"
+      status: '搜尋狀態'
+      priority: '搜尋有限度'
     error_sentence: '禁止保存此任務'
   sort:
     created_at: "建立時間排序切換"
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 校驗失敗：%{errors}
-        restrict_dependent_destroy:
-          has_one: 由於%{record}需要此記錄，所以無法移除記錄
-          has_many: 由於%{record}需要此記錄，所以無法移除記錄
   date:
     abbr_day_names:
     - 周日

@@ -1,0 +1,10 @@
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont , t('forms.search.title')%>
+  <%= f.search_field :title_cont %>
+
+  <%= f.label :status_eq , t('forms.search.status')%>
+  <%= f.select :status_eq, options_for_select(Task.i18n_stages),include_blank:  t('forms.enum.status_enum.all_status') %> 
+  <%= f.label :priority_eq , t('forms.search.priority')%>
+  <%= f.select :priority_eq, options_for_select(Task.i18n_prior),include_blank:  t('forms.enum.priority_enum.all_priority') %> 
+  <%= f.submit name: "Search" %>
+<% end %>
