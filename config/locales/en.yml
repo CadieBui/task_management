@@ -40,7 +40,7 @@ en:
       title: "Title"
       content: "Content"
       endtime: "Deadline"
-      task_status: "Status"
+      status: "Status"
       priority: "Priority"
     create:
       success: 'Task was successfully created' 
@@ -64,12 +64,14 @@ en:
         completed: "Completed"
       priority_enum:
         all_priority: "All priority"
+        not_set: "Unset"
         high: "High priority"
         medium: "Medium priority"
         low: "Low priority"
     search:
       title: "Search by title"
-      task_status: 'Search by status'
+      status: 'Search by status'
+      priority: 'Search by priority'
     error_sentence: " prohibited this task from being saved:"
   sort:
     created_at: "Sort by create time switch"

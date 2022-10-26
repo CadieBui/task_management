@@ -5,9 +5,15 @@ class Task < ApplicationRecord
   validates :content,  :presence => true,:length => { :minimum => 5 }
 
   enum status: {not_set: 0, pending: 1, inprogress: 2, completed: 3 }
-  translate_enum :status
-  enum priority: {high: 0, medium: 1, low: 2 }
-  translate_enum :priority
+  enum priority: {not_set_priority: 0,high: 1, medium: 2, low: 3 }
+
+  ransacker :status, formatter: ->(key) { statuses[key] } do |parent|
+    parent.table[:status]
+  end
+  
+  ransacker :priority, formatter: ->(key) { priorities[key] } do |parent|
+    parent.table[:priority]
+  end
 
   def self.i18n_stages
     statuses.keys.map  do |status|
