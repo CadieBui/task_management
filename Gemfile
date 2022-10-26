@@ -88,4 +88,3 @@ gem 'rails-i18n'
 gem 'rubocop'
 
 gem 'ransack'
-gem 'translate_enum'
