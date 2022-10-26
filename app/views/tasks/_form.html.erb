@@ -25,12 +25,12 @@
 
   <div>
     <%= form.label :status, t('forms.field_label.task_status'), style: "display: block" %>
-    <%= form.select :status, Task.i18n_stages { |g| [t("forms.enum.status_enum.#{g.downcase}"), g] }, {}, { class: "form-control" } %> 
+    <%= form.select :status, Task.i18n_stages, { class: "form-control" } %> 
   </div>
 
   <div>
     <%= form.label :priority, t('forms.field_label.priority'), style: "display: block" %>
-    <%= form.select :priority, Task.i18n_prior { |g| [t("forms.enum.priority_enum.#{g.downcase}"), g] }, {}, { class: "form-control" } %> 
+    <%= form.select :priority, Task.i18n_prior, { class: "form-control" } %> 
   </div>
 
   <div>

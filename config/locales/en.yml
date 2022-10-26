@@ -64,7 +64,7 @@ en:
         completed: "Completed"
       priority_enum:
         all_priority: "All priority"
-        not_set: "Unset"
+        not_set_priority: "Unset"
         high: "High priority"
         medium: "Medium priority"
         low: "Low priority"

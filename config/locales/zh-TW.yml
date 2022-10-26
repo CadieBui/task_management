@@ -40,7 +40,7 @@ zh-TW:
         completed: "完成"
       priority_enum:
         all_priority: "全部"
-        not_set: "未設定"
+        not_set_priority: "未設定"
         high: "優先度高"
         medium: "優先度中"
         low: "優先度低"
