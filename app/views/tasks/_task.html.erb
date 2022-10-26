@@ -11,12 +11,12 @@
 
   <p>
     <strong><%= t('forms.field_label.task_status')%>:</strong>
-    <%= @task.translated_status %>
+    <%= I18n.t task.status, scope: [:forms,:enum, :status_enum] %>
   </p>
 
   <p>
     <strong><%= t('forms.field_label.priority')%>:</strong>
-    <%= @task.translated_priority %>
+    <%= I18n.t task.priority, scope: [:forms, :enum, :priority_enum] %>
   </p>
   <p>
     <strong><%= t('forms.field_label.endtime')%>:</strong>

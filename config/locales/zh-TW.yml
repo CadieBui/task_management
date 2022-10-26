@@ -1,16 +1,5 @@
 zh-TW:
   activerecord:
-    attributes:
-      task:
-        status_list:
-          not_set: "未設定"
-          pending: "待處理"
-          inprogress: "進行中"
-          completed: "完成"
-        priority_list:
-          high: "優先度高"
-          medium: "優先度中"
-          low: "優先度低"
     errors:
       messages:
         record_invalid: 校驗失敗：%{errors}
@@ -60,7 +49,6 @@ zh-TW:
     error_sentence: '禁止保存此任務'
   sort:
     created_at: "建立時間排序切換"
-  
   date:
     abbr_day_names:
     - 周日

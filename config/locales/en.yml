@@ -73,16 +73,4 @@ en:
     error_sentence: " prohibited this task from being saved:"
   sort:
     created_at: "Sort by create time switch"
-  activerecord:
-    attributes:
-      task:
-        status_list:
-          not_set: "Unset"
-          pending: "Pending"
-          inprogress: "In progress"
-          completed: "Completed"
-        priority_list:
-          high: "High priority"
-          medium: "Medium priority"
-          low: "Low priority"
 

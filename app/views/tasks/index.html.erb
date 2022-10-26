@@ -29,10 +29,10 @@
           <%= task.content %>
         </td>
         <td>
-          <%= task.translated_status %>
+          <%= I18n.t task.status, scope: [:forms, :enum, :status_enum]  %>
         </td>
         <td>
-          <%= task.translated_priority %>
+          <%= I18n.t task.priority, scope: [:forms, :enum, :priority_enum]  %>
         </td>
         <td>
           <%= task.endtime %>
