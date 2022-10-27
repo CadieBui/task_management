@@ -87,4 +87,10 @@ gem 'rails-i18n'
 # Code formatter, see https://github.com/rubocop/rubocop
 gem 'rubocop'
 
+# See https://activerecord-hackery.github.io/ransack/getting-started/simple-mode/
 gem 'ransack'
+
+# See https://github.com/kaminari/kaminari
+gem 'kaminari'
+
+gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.16'

@@ -1,46 +1,78 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
+    <i class="fa-solid fa-circle-check"></i>      
+    <b class="capitalize"><%= notice %></b>
+    </span>
+  </div>
+<% end %>
 
-<h1><%= t('page_title.tasklist') %></h1>
-
-<%= render "search_form", task: @task %>
-
-<span>
-  <%= sort_link(@q, :created_at, default_order: :desc) do %>
-    <strong><%=t('sort.created_at')%></strong>
+<div class="flex items-center	justify-between	my-6">
+  <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.tasklist') %></h1>
+  <%= link_to new_task_path, class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
+    <i class="fa-solid fa-plus"><%= t('forms.button.new')%></i>
   <% end %>
-</span>
+</div>
+<%= render "search_form", task: @task %>
+<div class="my-6">
+  <span class="bg-white text-pink-500 active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150" >
+    <%= sort_link(@q, :created_at, default_order: :desc) do %>
+      <strong><%=t('sort.created_at')%></strong>
+    <% end %>
+  </span>
+</div>
 
-<table id="tasks">
-  <thead>
-    <th><%= t('forms.field_label.title')%></th>
-    <th><%= t('forms.field_label.content')%></th>
-    <th><%= t('forms.field_label.status')%></th>
-    <th><%= t('forms.field_label.priority')%></th>
-    <th><%= t('forms.field_label.endtime')%></th>
-
+<table id="tasks" class=" w-full border">
+  <thead >
+    <tr class="divide-x divide-y">
+      <th><%= t('forms.field_label.title')%></th>
+      <th><%= t('forms.field_label.content')%></th>
+      <th><%= t('forms.field_label.status')%></th>
+      <th><%= t('forms.field_label.priority')%></th>
+      <th><%= t('forms.field_label.endtime')%></th>
+    </tr>
   </thead>
-  <tbody>
+  <tbody class="divide-y border-y">
     <% @tasks.each do |task| %>
-      <tr>
-        <td>
-          <%= link_to task.title, task %>
+      <tr class="hover:bg-gray-300 divide-x">
+        <td class="p-2">
+          <%= link_to task.title, task%>
+        </td>
+        <td class="p-2">
+          <%= link_to task.content, task %>
+        </td>
+        <td class="p-2">
+          <%=  I18n.t task.status, scope: [:forms, :enum, :status_enum]  %>
         </td>
         <td>
-          <%= task.content %>
+          <% if task.high? %>
+            <span class=" text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-rose-400 uppercase last:mr-0 mr-1">
+              <i class="fa-solid fa-fire" style="color:#ffc107"></i>
+              <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+            </span>
+          <% end %>
+          <% if task.medium? %>
+            <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-amber-200 uppercase last:mr-0 mr-1">
+              <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+            </span>
+          <% end %>
+          <% if task.low? %>
+            <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-sky-200 uppercase last:mr-0 mr-1">
+              <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+            </span>
+          <% end %>
+          <% if task.not_set_priority? %>
+            <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-gray-200 uppercase last:mr-0 mr-1">
+              <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+            </span>
+          <% end %>
         </td>
         <td>
-          <%= I18n.t task.status, scope: [:forms, :enum, :status_enum]  %>
-        </td>
-        <td>
-          <%= I18n.t task.priority, scope: [:forms, :enum, :priority_enum]  %>
-        </td>
-        <td>
-          <%= task.endtime %>
+          <%= task.endtime.try(:strftime, "%Y - %m - %d")%>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-<%= link_to t('forms.button.new'), new_task_path %>
+
+<%= paginate @tasks %>

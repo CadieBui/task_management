@@ -1,26 +1,46 @@
-<div id="<%= dom_id task %>">
-  <p>
+<div id="<%= dom_id task %>" class="grid justify-items-center min-w-[300px] w-full px-2 py-1 mt-5 gap-y-5 border border-pink-500 rounded-md shadow-md divide-y divide-dotted" >
+  <div class="w-full">
     <strong><%= t('forms.field_label.title')%>:</strong>
     <%= task.title %>
-  </p>
+  </div>
 
-  <p>
+  <div class="w-full">
     <strong><%= t('forms.field_label.content')%>:</strong>
     <%= task.content %>
-  </p>
+  </div>
 
-  <p>
+  <div class="w-full">
     <strong><%= t('forms.field_label.status')%>:</strong>
-    <%= I18n.t task.status, scope: [:forms,:enum, :status_enum] %>
-  </p>
+    <%= I18n.t(task.status, scope: [:forms,:enum, :status_enum]) %>
+  </div>
 
-  <p>
+  <div class="w-full">
     <strong><%= t('forms.field_label.priority')%>:</strong>
-    <%= I18n.t task.priority, scope: [:forms, :enum, :priority_enum] %>
-  </p>
-  <p>
+    <% if task.high? %>
+      <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded-full text-rose-600 bg-rose-200 uppercase last:mr-0 mr-1">
+        <i class="fa-solid fa-fire" style="color:#ffc107"></i>
+        <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+      </span>
+    <% end %>
+    <% if task.medium? %>
+      <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded-full text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
+        <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+      </span>
+    <% end %>
+    <% if task.low? %>
+      <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded-full text-sky-600 bg-sky-200 uppercase last:mr-0 mr-1">
+        <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+      </span>
+    <% end %>
+    <% if task.not_set_priority? %>
+      <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-gray-200 uppercase last:mr-0 mr-1">
+        <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+      </span>
+    <% end %>
+  </div>
+  <div class="w-full">
     <strong><%= t('forms.field_label.endtime')%>:</strong>
-    <%= task.endtime %>
-  </p>
+    <%= task.endtime.try(:strftime, "%Y - %m - %d") %>
+  </div>
 
 </div>

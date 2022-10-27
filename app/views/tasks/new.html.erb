@@ -1,9 +1,11 @@
-<h1><%= t('page_title.new_task') %></h1>
+<div class="flex items-center	justify-between">
+  <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.new_task') %></h1>
 
-<%= render "form", task: @task %>
-
-<br>
-
-<div>
-  <%= link_to t('forms.button.goback'), tasks_path %>
+  <%= link_to tasks_path , class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do%>
+    <i class="fa-regular fa-circle-left"> <%=t('forms.button.goback')%></i>
+  <% end %>
+  
 </div>
+<div class="flex justify-center">
+  <%= render "form", task: @task %>
+<div>

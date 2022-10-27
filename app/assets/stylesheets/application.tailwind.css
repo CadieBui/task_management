@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components {
+  body {
+    font-family: "Gotham", sans-serif;
+    background-color: #f8f7f5;
+  }
+}
+
+
