@@ -1,11 +1,10 @@
-<h1><%= t('page_title.edit_task')%></h1>
+<div class="flex items-center	justify-between">
 
-<%= render "form", task: @task %>
+  <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.edit_task')%></h1>
 
-<br>
-
-<div>
-  <%= link_to t('forms.button.show'), @task %> 
-  <br>
-  <%= link_to t('forms.button.goback'), tasks_path %>
+  <div>
+    <%= link_to raw("<i class=\"fa-solid fa-circle-info\">  #{t('forms.button.show')}</i>"), @task , class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"%> 
+    <%= link_to raw("<i class=\"fa-regular fa-circle-left\">  #{t('forms.button.goback')}</i>"), tasks_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
+  </div>
 </div>
+<%= render "form", task: @task %>

@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   def index
     # TODO: show and search data from Task table 
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true).page(params[:page]).per(5)
   end
 
   # GET /tasks/1 or /tasks/1.json

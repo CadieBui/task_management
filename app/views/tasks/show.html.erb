@@ -1,12 +1,26 @@
-<p style="color: green"><%= notice %></p>
-<h1><%= t('page_title.show_task')%></h1>
 
-<%= render @task %>
+<div class="flex items-center	justify-between	">
+  <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.show_task')%></h1>
+  <div class="flex">
+    <%= link_to raw("<i class=\"fa-regular fa-circle-left\">  #{t('forms.button.goback')}</i>"), tasks_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
+  </div>
+</div>
 
-<div>
-  <%= link_to t('forms.button.edit'), edit_task_path(@task) %> 
-  <br/>
-  <%= link_to t('forms.button.goback'), tasks_path %>
-  <br/>
-  <%= button_to  t('forms.button.destroy'), @task, method: :delete %>
+
+<div class="flex justify-center">
+
+  <div class="grid justify-items-center max-w-[600px] w-full">
+    <% if notice %>
+      <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
+        <i class="fa-solid fa-circle-check"></i>      
+        <b class="capitalize"><%= notice %></b>
+        </span>
+      </div>
+    <% end %>
+    <%= render @task %>
+    <div class="flex my-6 justify-between w-full">
+      <%= link_to raw("<i class=\"fa-solid fa-pen-to-square\">  #{t('forms.button.edit')}</i>"), edit_task_path(@task),class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  %> 
+      <%= button_to raw("<i class=\"fa-solid fa-trash\">  #{t('forms.button.destroy')}</i>"), @task, method: :delete, class:"bg-red-500  text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
+    </div>
+  </div>
 </div>

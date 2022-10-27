@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
 
@@ -87,4 +89,13 @@ gem 'rails-i18n'
 # Code formatter, see https://github.com/rubocop/rubocop
 gem 'rubocop'
 
+# See https://activerecord-hackery.github.io/ransack/getting-started/simple-mode/
 gem 'ransack'
+
+# See https://github.com/kaminari/kaminari
+gem 'kaminari'
+
+gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.16'
+gem "font-awesome-sass", "~> 6.2.0"
+# Use SCSS for stylesheets
+# gem 'sassc-rails'
