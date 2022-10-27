@@ -2,7 +2,7 @@
 
   <%= form_with(model: task,html: {class: ""}) do |form|%>
     <% if task.errors.any? %>
-      <div style="color: red">
+      <div class="text-rose-800 p-2">
         <h2>
           <%= pluralize(task.errors.count, "error")%><%= t('forms.error_sentence')%>
         </h2>

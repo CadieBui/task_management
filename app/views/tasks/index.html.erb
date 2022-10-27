@@ -8,7 +8,9 @@
 
 <div class="flex items-center	justify-between	my-6">
   <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.tasklist') %></h1>
-  <%= link_to raw("<i class=\"fa-solid fa-plus\">  #{t('forms.button.new')}</i>"), new_task_path, class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
+  <%= link_to new_task_path, class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
+    <i class="fa-solid fa-plus"><%= t('forms.button.new')%></i>
+  <% end %>
 </div>
 <%= render "search_form", task: @task %>
 <div class="my-6">
@@ -42,23 +44,23 @@
           <%=  I18n.t task.status, scope: [:forms, :enum, :status_enum]  %>
         </td>
         <td>
-          <% if task.priority == 'high'%>
+          <% if task.high? %>
             <span class=" text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-rose-400 uppercase last:mr-0 mr-1">
               <i class="fa-solid fa-fire" style="color:#ffc107"></i>
               <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
             </span>
           <% end %>
-          <% if task.priority == 'medium' %>
+          <% if task.medium? %>
             <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-amber-200 uppercase last:mr-0 mr-1">
               <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
             </span>
           <% end %>
-          <% if task.priority == 'low' %>
+          <% if task.low? %>
             <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-sky-200 uppercase last:mr-0 mr-1">
               <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
             </span>
           <% end %>
-          <% if task.priority == 'not_set_priority' %>
+          <% if task.not_set_priority? %>
             <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-gray-200 uppercase last:mr-0 mr-1">
               <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
             </span>
