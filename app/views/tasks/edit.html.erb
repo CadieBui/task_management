@@ -7,4 +7,6 @@
     <%= link_to raw("<i class=\"fa-regular fa-circle-left\">  #{t('forms.button.goback')}</i>"), tasks_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
   </div>
 </div>
-<%= render "form", task: @task %>
+<div class="flex justify-center">
+  <%= render "form", task: @task %>
+</div>
