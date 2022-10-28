@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_25_162059) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_28_064840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -22,7 +23,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_25_162059) do
     t.datetime "endtime"
     t.integer "status", default: 0
     t.integer "priority", default: 0
+    t.uuid "userid"
     t.index ["status"], name: "index_tasks_on_status"
+    t.index ["userid"], name: "index_tasks_on_userid"
+  end
+
+  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "username", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
