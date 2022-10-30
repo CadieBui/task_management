@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_28_064840) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_28_142401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_064840) do
     t.datetime "endtime"
     t.integer "status", default: 0
     t.integer "priority", default: 0
-    t.uuid "userid"
+    t.uuid "user_id"
     t.index ["status"], name: "index_tasks_on_status"
-    t.index ["userid"], name: "index_tasks_on_userid"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -35,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_064840) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "tasks", "users"
 end

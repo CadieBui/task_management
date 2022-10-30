@@ -11,6 +11,8 @@ zh-TW:
     edit_task: "修改任務"
     show_task: "詳細內容"
     new_task: "新增任務"
+    login: "登入"
+    signup: "註冊"
   forms:
     field_label:
       title: "標題"
@@ -18,12 +20,17 @@ zh-TW:
       endtime: "結束任務時間"
       status: "狀態"
       priority: "優先度"
+      username: "帳號"
+      password: "密碼"
     create:
-      success: '任務新增成功' 
+      success: '任務新增成功！' 
+      login_success: "恭喜你！登入成功"
+      signup_success: "歡迎加入！"
     edit:
       success: '任務更新成功' 
     delete:
       success: '任務刪除成功' 
+      logout_success: '再見'
     button:
       submit: "確認"
       new: '新增'
@@ -31,6 +38,10 @@ zh-TW:
       edit: "編輯"
       destroy: "刪除"
       show: "詳細"
+      login: "登入"
+      logout: "登出"
+      signup: "註冊"
+      joinus: "加入我們"
     enum:
       status_enum:
         all_status: "全部"
@@ -49,6 +60,7 @@ zh-TW:
       status: '搜尋狀態'
       priority: '搜尋有限度'
     error_sentence: '禁止保存此任務'
+    invalid: '帳號或密碼錯誤！'
   sort:
     created_at: "建立時間排序切換"
   date:

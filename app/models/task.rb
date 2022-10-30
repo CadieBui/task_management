@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
   
-  validates :title, :presence => true,:length => { :minimum => 5 }, uniqueness: true
+  validates :title, :presence => true,:length => { :minimum => 5 }
   validates :content,  :presence => true,:length => { :minimum => 5 }
 
   enum status: {not_set: 0, pending: 1, inprogress: 2, completed: 3 }

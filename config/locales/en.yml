@@ -35,6 +35,8 @@ en:
     edit_task: "Edit task"
     show_task: "Detail"
     new_task: "Create task"
+    login: "Log in"
+    signup: "Sign up"
   forms:
     field_label:
       title: "Title"
@@ -42,12 +44,17 @@ en:
       endtime: "Deadline"
       status: "Status"
       priority: "Priority"
+      username: "You user name"
+      password: "Your password"
     create:
       success: 'Task was successfully created' 
+      login_success: "Congratulation! Log in successfully!"
+      signup_success: "Welcome to join us!"
     edit:
       success: 'Task was successfully updated' 
     delete:
       success: 'Task was successfully destroyed' 
+      logout_success: 'Bye bye! Come back later'
     button:
       submit: "Submit"
       new: 'Create a new task'
@@ -55,6 +62,10 @@ en:
       edit: "Edit this task"
       destroy: "Delete this task"
       show: "Detail"
+      login: "Log in"
+      logout: "Log out"
+      signup: "Sign up"
+      joinus: "Join us"
     enum:
       status_enum:
         all_status: "All status"
@@ -73,6 +84,7 @@ en:
       status: 'Search by status'
       priority: 'Search by priority'
     error_sentence: " prohibited this task from being saved:"
+    invalid: "Invalid user name or password"
   sort:
     created_at: "Sort by create time switch"
 

@@ -5,7 +5,7 @@ FactoryBot.define do
     endtime { Faker::Time.forward(days: 5, period: :morning)}
     status { Faker::Number.between(from: 0, to: 3)}
     priority { Faker::Number.between(from: 0, to: 2)}
-    userid {'41ee4cfd-5fd8-4f9a-96d4-a2d3516acf36'}
+    user_id {'b6a56e45-3eb8-4453-ac6c-732995a973ac'}
   end
 end
 
