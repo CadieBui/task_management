@@ -6,6 +6,8 @@ zh-TW:
     new_task: "新增任務"
     login: "登入"
     signup: "註冊"
+    user_list: "使用者管理"
+    user: "使用者"
   forms:
     field_label:
       title: "標題"
@@ -15,6 +17,8 @@ zh-TW:
       priority: "優先度"
       username: "帳號"
       password: "密碼"
+      user_name: "使用者帳號"
+      task_number: "使用者任務數量"
     create:
       success: '任務新增成功！' 
       login_success: "恭喜你！登入成功"
@@ -27,9 +31,12 @@ zh-TW:
     button:
       submit: "確認"
       new: '新增'
+      new_user: '新增使用者'
       goback: "返回列表"
       edit: "編輯"
+      edit_user: "編輯使用者"
       destroy: "刪除"
+      destroy_user: "刪除使用者"
       show: "詳細"
       login: "登入"
       logout: "登出"

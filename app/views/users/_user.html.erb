@@ -1,12 +1,58 @@
-<div id="<%= dom_id user %>">
+<div id="<%= dom_id user %>" class="grid justify-items-center min-w-[300px] w-full px-2 py-1 mt-5 gap-y-5 border border-pink-500 rounded-md shadow-md divide-y divide-dotted">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Username:</strong>
+    <strong class="block font-medium mb-1"><%= t('page_title.user')%></strong>
     <%= user.username %>
   </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this user", user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this user', edit_user_path(user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <table id="users" class=" w-full border mb-6 mx-6">
+    <thead >
+      <tr class="divide-x divide-y">
+        <th><%= t('forms.field_label.title')%></th>
+        <th><%= t('forms.field_label.content')%></th>
+        <th><%= t('forms.field_label.status')%></th>
+        <th><%= t('forms.field_label.priority')%></th>
+        <th><%= t('forms.field_label.endtime')%></th>
+      </tr>
+    </thead>
+    <tbody class="divide-y border-y">
+      <% user.task.each do |user| %>
+        <tr class="hover:bg-gray-300 divide-x">
+          <td class="p-2">
+            <%= user.title%>
+          </td>
+          <td class="p-2">
+            <%= user.content %>
+          </td>
+          <td class="p-2">
+            <%=  I18n.t user.status, scope: [:forms, :enum, :status_enum]  %>
+          </td>
+          <td>
+            <% if user.high? %>
+              <span class=" text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-rose-400 uppercase last:mr-0 mr-1">
+                <i class="fa-solid fa-fire" style="color:#ffc107"></i>
+                <%= I18n.t(user.priority, scope: [:forms, :enum, :priority_enum]) %>
+              </span>
+            <% end %>
+            <% if user.medium? %>
+              <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-amber-200 uppercase last:mr-0 mr-1">
+                <%= I18n.t(user.priority, scope: [:forms, :enum, :priority_enum]) %>
+              </span>
+            <% end %>
+            <% if user.low? %>
+              <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-sky-200 uppercase last:mr-0 mr-1">
+                <%= I18n.t(user.priority, scope: [:forms, :enum, :priority_enum]) %>
+              </span>
+            <% end %>
+            <% if user.not_set_priority? %>
+              <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-gray-200 uppercase last:mr-0 mr-1">
+                <%= I18n.t(user.priority, scope: [:forms, :enum, :priority_enum]) %>
+              </span>
+            <% end %>
+          </td>
+          <td>
+            <%= user.endtime.try(:strftime, "%Y - %m - %d")%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

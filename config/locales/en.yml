@@ -37,6 +37,8 @@ en:
     new_task: "Create task"
     login: "Log in"
     signup: "Sign up"
+    user_list: "User management"
+    user: "User"
   forms:
     field_label:
       title: "Title"
@@ -46,6 +48,8 @@ en:
       priority: "Priority"
       username: "You user name"
       password: "Your password"
+      user_name: "User accounts"
+      task_number: "User task number"
     create:
       success: 'Task was successfully created' 
       login_success: "Congratulation! Log in successfully!"
@@ -58,9 +62,12 @@ en:
     button:
       submit: "Submit"
       new: 'Create a new task'
+      new_user: 'Create new user'
       goback: "Back to task list"
       edit: "Edit this task"
+      edit_user: "Edit this user"
       destroy: "Delete this task"
+      destroy_user: "Delete this user"
       show: "Detail"
       login: "Log in"
       logout: "Log out"
