@@ -4,6 +4,9 @@ RSpec.describe "Tasks", type: :system do
   before do
     driven_by(:rack_test)
     Task.destroy_all
+    @user = User.create(username: "Test", password: "1111")
+    allow(@user).to receive(:authenticate).and_return @user
+    post "/login", params: { username: @user.username, password: @user.password }
   end
 
   # success case in create
@@ -64,7 +67,7 @@ RSpec.describe "Tasks", type: :system do
   scenario "empty title and content in create" do  
     status = 'pending'
     priority = 'high'
-    run_edit_task(title:'', content: '', endtime: '', status: status, priority: priority)
+    run_create_task(title:'', content: '', endtime: '', status: status, priority: priority)
     expect(page).to have_content("error")
   end
 
@@ -90,7 +93,6 @@ RSpec.describe "Tasks", type: :system do
   scenario "empty title and content in edit" do  
     status = 'pending'
     priority = 'high'
-
     run_edit_task(title:'', content: '', endtime: '', status: status, priority: priority)
     expect(page).to have_content("error")
   end
@@ -115,6 +117,10 @@ RSpec.describe "Tasks", type: :system do
 
   # success case in show list sort by create time
   scenario "list sort by create time " do  
+    username = "TEST"
+    password = "TEST"
+    run_signup(username: username, password: password)
+    run_login(username: username, password: password)
     visit tasks_path
     click_link I18n.t('sort.created_at')
     expect(page).to have_current_path("/tasks?q%5Bs%5D=created_at+desc")  
@@ -243,7 +249,11 @@ RSpec.describe "Tasks", type: :system do
 
   private
     # test create task
-    def run_create_task(title:, content:, endtime:, status:, priority: )
+    def run_create_task(title:, content:, endtime:, status:, priority:)
+      username = "TEST"
+      password = "TEST"
+      run_signup(username: username, password: password)
+      run_login(username: username, password: password)
       visit new_task_path
       fill_in I18n.t('forms.field_label.title'), with: title
       fill_in I18n.t('forms.field_label.content'), with: content
@@ -255,7 +265,11 @@ RSpec.describe "Tasks", type: :system do
 
     # test edit task
     def run_edit_task(title:, content:, endtime:, status:, priority:)
-      task = create(:task)
+      @user = User.create(username: "Test", password: "1111")
+      # post "/login", params: {session: { username: @user.username, password: @user.password }}
+      get "/tasks", params: {sessions: { username: @user.username, password: @user.password}}
+      visit new_task_path
+      task = Task.create(title: "Test", content: "Test", user_id: session[:user_id])
       visit(edit_task_path(task.id))
       fill_in I18n.t('forms.field_label.title'), with: title
       fill_in I18n.t('forms.field_label.content'), with: content
@@ -267,8 +281,24 @@ RSpec.describe "Tasks", type: :system do
 
     # test delete task
     def run_delete_task
-      task = create(:task)
-      visit(task_path(task.id))
+      visit new_task_path
+      task = Task.create(title: "Test", content: "Test", status: 'pending',priority: 'high', user_id: session[:user_id])
+      visit(task_path(id: task.id))
       click_button I18n.t('forms.button.destroy')
     end
+
+    def run_signup(username:, password:)
+      visit signup_path
+      fill_in I18n.t('forms.field_label.username'), with: username
+      fill_in I18n.t('forms.field_label.password'), with: password
+      click_button I18n.t('forms.button.signup')
+    end
+
+    def run_login(username:, password:)
+      visit login_path
+      fill_in I18n.t('forms.field_label.username'), with: username
+      fill_in I18n.t('forms.field_label.password'), with: password
+      click_button I18n.t('forms.button.login')
+    end
+   
 end
