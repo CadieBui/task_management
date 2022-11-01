@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def current_user
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
-    end
+    return if session[:user_id].blank?
+      @current_user ||= User.find_by(id: session[:user_id])
   end
+  
 
   def authorized
-    redirect_to login_path, alert: "You are already logged in." unless session.include? :user_id
+    return if current_user.present?
+    redirect_to login_path, alert: "You are already logged in."
   end
 
 end

@@ -59,6 +59,7 @@ group :development, :test do
   gem "factory_bot_rails"
   # See https://github.com/faker-ruby/faker
   gem 'faker'
+  gem 'bullet'
 
 end
 

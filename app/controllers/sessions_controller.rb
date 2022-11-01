@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-      if user.present? && user.authenticate(params[:password_digest])
+      if user.present? && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect_to root_path, notice: t('forms.create.login_success')
       else

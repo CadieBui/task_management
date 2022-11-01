@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     # TODO: show and search data from Task table 
-    @user = current_user.task
+    @user = current_user.tasks
     @q = @user.ransack(params[:q])
     @tasks = @q.result.includes(:user).page(params[:page]).per(5) 
   end
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   def create
     # TODO: after press submit button => create a new task
     @task = Task.new(task_params)
-    @task.user_id = session[:user_id]
+    @task.user_id = current_user
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_url(@task), notice: t('forms.create.success') }
