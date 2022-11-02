@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.all.includes(:tasks)
   end
 
   # GET /users/new
