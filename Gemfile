@@ -53,14 +53,13 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  # See https://github.com/rspec/rspec-rails 
+  # See https://github.com/rspec/rspec-rails
   gem 'rspec-rails', '~> 6.0.0'
   # See https://github.com/thoughtbot/factory_bot_rails && https://www.betterspecs.org/
   gem "factory_bot_rails"
   # See https://github.com/faker-ruby/faker
   gem 'faker'
   gem 'bullet'
-
 end
 
 group :development do

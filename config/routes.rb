@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy"
 
   get 'admin', to: "users#index"
-  
-  get "signup",to: "users#new"
-  post "signup",to: "users#create"
+
+  get "signup", to: "users#new"
+  post "signup", to: "users#create"
 
   root "tasks#index"
 end

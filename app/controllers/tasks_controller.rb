@@ -1,21 +1,21 @@
 class TasksController < ApplicationController
-  before_action :find_task, only: %i[ show edit update destroy ]
+  before_action :find_task, only: %i[show edit update destroy]
 
   # GET /tasks or /tasks.json
   def index
-    # TODO: show and search data from Task table 
+    # TODO: show and search data from Task table
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result.includes(:user).page(params[:page]).per(5) 
+    @tasks = @q.result.includes(:user).page(params[:page]).per(5)
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
-    #TODO: find and show single task
+    # TODO: find and show single task
     @tasks = Task.find(params[:id])
 
     respond_to do |format|
-      format.html  # show.html.erb
-      format.json  { render :json => @tasks }
+      format.html # show.html.erb
+      format.json { render :json => @tasks }
     end
   end
 
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    # TODO: after press submit button => update a single task 
+    # TODO: after press submit button => update a single task
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to task_url(@task), notice: t('forms.edit.success') }
@@ -71,14 +71,16 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def find_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:title, :content, :endtime, :status, :priority, :tags)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def find_task
+    @task = Task.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:title, :content, :endtime, :status, :priority)
+  end
 end
