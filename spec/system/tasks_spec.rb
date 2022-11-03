@@ -4,9 +4,6 @@ RSpec.describe "Tasks", type: :system do
   before do
     driven_by(:rack_test)
     Task.destroy_all
-    @user = User.create(username: "Test", password: "1111")
-    allow(@user).to receive(:authenticate).and_return @user
-    post "/login", params: { username: @user.username, password: @user.password }
   end
 
   # success case in create
@@ -265,12 +262,10 @@ RSpec.describe "Tasks", type: :system do
 
     # test edit task
     def run_edit_task(title:, content:, endtime:, status:, priority:)
-      @user = User.create(username: "Test", password: "1111")
-      # post "/login", params: {session: { username: @user.username, password: @user.password }}
-      get "/tasks", params: {sessions: { username: @user.username, password: @user.password}}
-      visit new_task_path
-      task = Task.create(title: "Test", content: "Test", user_id: session[:user_id])
-      visit(edit_task_path(task.id))
+      user = User.create(username: "1111", password: "1111")
+      task = Task.create(title: Faker::Lorem.sentence, content:  Faker::Lorem.sentence, user_id: user.id)
+      run_login(username: user.username, password:"1111")
+      visit edit_task_path(task)
       fill_in I18n.t('forms.field_label.title'), with: title
       fill_in I18n.t('forms.field_label.content'), with: content
       fill_in I18n.t('forms.field_label.endtime'), with: endtime
@@ -281,9 +276,10 @@ RSpec.describe "Tasks", type: :system do
 
     # test delete task
     def run_delete_task
-      visit new_task_path
-      task = Task.create(title: "Test", content: "Test", status: 'pending',priority: 'high', user_id: session[:user_id])
-      visit(task_path(id: task.id))
+      user = User.create(username: "2222", password: "2222")
+      run_login(username: user.username, password:"2222")
+      task = Task.create(title: Faker::Lorem.sentence, content:  Faker::Lorem.sentence, user_id: user.id)
+      visit task_path(task)
       click_button I18n.t('forms.button.destroy')
     end
 
