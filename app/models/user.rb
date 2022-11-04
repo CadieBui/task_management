@@ -10,7 +10,8 @@ class User < ApplicationRecord
   validates :password, :presence => true
 
   def last_admin!
-    if User.where(:admin => true).count == 1
+    admin = User.where(:admin => true)
+    if admin.count == 1 && admin.find_by(id: id)
       errors.add(:base, I18n.t('forms.last_admin'))
       throw(:abort)
     end
