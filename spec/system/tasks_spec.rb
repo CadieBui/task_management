@@ -39,9 +39,7 @@ RSpec.describe "Tasks", type: :system do
       visit tasks_path
       click_link I18n.t('sort.created_at')
       task = all('tbody > tr').map do |tr|
-        tr.all('td').map do |td|
-          td.text
-        end
+        tr.all('td').map(&:text)
       end
       r = [
         [task2.title, task2.content, I18n.t("forms.enum.status_enum.#{task2.status}"), I18n.t("forms.enum.priority_enum.#{task2.priority}"), ''], 
