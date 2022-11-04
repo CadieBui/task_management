@@ -17,25 +17,28 @@ RSpec.describe "Users", type: :system do
       expect(user[:username]).to be_present
     end
 
-    context 'when' do
-      it 'input all empty' do
+    context 'when input all empty' do
+      it do
         visit signup_path
         run_signup('', '')
         run_expect_error('signup')
       end
+    end
 
-      it 'username is empty' do
+    context 'when username is empty' do
+      it do
         visit signup_path
         run_signup('', user[:password])
         run_expect_error('signup')
       end
+    end
 
-      it 'password is empty' do
+    context 'when password is empty' do
+      it do
         visit signup_path
         run_signup(user[:username], '')
         run_expect_error('signup')
       end
-
     end
   end
 
@@ -48,32 +51,40 @@ RSpec.describe "Users", type: :system do
       run_expect_login_success(user[:username])
     end
 
-    context 'when' do
-      it 'input all empty' do
+    context 'when input all empty' do
+      it do
         visit login_path
         run_login('', '')
         run_expect_error('login')
       end
+    end
 
-      it 'username is empty' do
+    context 'when username is empty' do
+      it do
         visit login_path
         run_login('', user[:password])
         run_expect_error('login')
       end
+    end
 
-      it 'username is wrong' do
+    context 'when username is wrong' do
+      it do
         visit login_path
         run_login('username', user[:password])
         run_expect_error('login')
       end
+    end
 
-      it 'password is empty' do
+    context 'when password is empty' do
+      it do
         visit login_path
         run_login(user[:username], '')
         run_expect_error('login')
       end
-
-      it 'password is wrong' do
+    end
+    
+    context 'when password is wrong' do
+      it do
         visit login_path
         run_login(user[:username], '1111')
         run_expect_error('login')

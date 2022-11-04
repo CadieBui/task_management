@@ -22,7 +22,7 @@ RSpec.describe "Tasks", type: :system do
 
   describe 'edit flow' do
     let(:task) { create(:task, status: 'pending', priority: 'high', user_id: user.id) }
-    let(:update_task)  { {title: 'This is a new title', content: 'This is a new content', status: 'completed', priority: 'high', user_id: user.id} } 
+    let(:update_task)  { {title: 'This is a new title', content: 'This is a new content', status: 'completed', priority: 'high'} } 
 
     it "success" do
       run_edit_task(task, update_task)
@@ -38,11 +38,17 @@ RSpec.describe "Tasks", type: :system do
     it "success" do
       visit tasks_path
       click_link I18n.t('sort.created_at')
-      task = all('tr').map do |tr, index|
-        tr.text          
+      task = all('tbody > tr').map do |tr|
+        tr.all('td').map do |td|
+          td.text
+        end
       end
+      r = [
+        [task2.title, task2.content, I18n.t("forms.enum.status_enum.#{task2.status}"), I18n.t("forms.enum.priority_enum.#{task2.priority}"), ''], 
+        [task1.title, task1.content, I18n.t("forms.enum.status_enum.#{task1.status}"), I18n.t("forms.enum.priority_enum.#{task1.priority}"), '']
+      ]
       expect(page).to have_current_path("/tasks?q%5Bs%5D=created_at+desc")
-      expect(task).to eq(["標題 內容 狀態 優先度 結束任務時間", "B title B content 待處理 優先度高", "A title A content 未設定 優先度低"])
+      expect(task).to eq(r)
     end
   end
 
@@ -66,8 +72,8 @@ RSpec.describe "Tasks", type: :system do
       expect(page).to have_current_path("/tasks?q[title_cont]=This+is+title&q[status_eq]=#{task.status}&q[priority_eq]=#{task.priority}&Search=%E6%90%9C%E5%B0%8B")
     end
 
-    context 'when search empty' do
-      it 'all' do
+    context 'when search all empty' do
+      it do
         run_fill_search(not_search)
         visit tasks_path
         expect(page).to have_content("#{task.title}")
@@ -75,46 +81,57 @@ RSpec.describe "Tasks", type: :system do
         expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{task.priority}"))
         expect(page).to have_current_path("/tasks")
       end
+    end
 
-      it 'title' do
+    context 'when search empty title' do
+      it do
         visit tasks_path
         run_fill_search(search_status_priority)
         expect(page).to have_content(I18n.t("forms.enum.status_enum.#{search_status_priority[:status]}"))
         expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{search_status_priority[:priority]}"))
         expect(page).to have_current_path("/tasks?q[title_cont]=&q[status_eq]=#{search_status_priority[:status]}&q[priority_eq]=#{search_status_priority[:priority]}&Search=%E6%90%9C%E5%B0%8B")
       end
+    end
 
-      it 'status' do
+    context 'when search empty status' do
+      it do
         run_fill_search(search_title_priority)
         expect(page).to have_content("#{search_title_priority[:title]}")
         expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{search_title_priority[:priority]}"))
         expect(page).to have_current_path("/tasks?q[title_cont]=This+is+title&q[status_eq]=&q[priority_eq]=#{search_title_priority[:priority]}&Search=%E6%90%9C%E5%B0%8B")
       end
+    end
 
-      it 'priority' do
+    context 'when search empty priority' do
+      it do
         visit tasks_path
         run_fill_search(search_title_status)
         expect(page).to have_content("#{search_title_priority[:title]}")
         expect(page).to have_content(I18n.t("forms.enum.status_enum.#{search_status_priority[:status]}"))
         expect(page).to have_current_path("/tasks?q[title_cont]=This+is+title&q[status_eq]=#{search_status_priority[:status]}&q[priority_eq]=&Search=%E6%90%9C%E5%B0%8B")
       end
+    end
 
-      it 'priority and title' do
+    context 'when search empty priority and title' do
+      it do
         visit tasks_path
         run_fill_search(search_status)
         expect(page).to have_content(I18n.t("forms.enum.status_enum.#{search_status[:status]}"))
         expect(page).to have_current_path("/tasks?q[title_cont]=&q[status_eq]=#{search_status[:status]}&q[priority_eq]=&Search=%E6%90%9C%E5%B0%8B")
       end
+    end
 
-      
-      it 'priority and status' do
+    context 'when search empty priority and status' do
+      it do
         visit tasks_path
         run_fill_search(search_title)
         expect(page).to have_content("#{search_title[:title]}")
         expect(page).to have_current_path("/tasks?q[title_cont]=This+is+title&q[status_eq]=&q[priority_eq]=&Search=%E6%90%9C%E5%B0%8B")
       end
+    end
 
-      it 'title and status' do
+    context 'when search empty title and status' do
+      it do
         visit tasks_path
         run_fill_search(search_priority)
         expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{search_priority[:priority]}"))
