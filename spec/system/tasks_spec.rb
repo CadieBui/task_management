@@ -243,17 +243,19 @@ RSpec.describe "Tasks", type: :system do
   end
 
   def run_expect(search_task, task)
+    # debugger
     if search_task[:title] != ''
-      expect(page).to have_content("#{task.title}")
+      expect(page).to have_content("#{search_task[:title]}")
     end
     if search_task[:status] != ''
-      expect(page).to have_content(I18n.t("forms.enum.status_enum.#{task.status}"))
+      expect(page).to have_content(I18n.t("forms.enum.status_enum.#{search_task[:status]}"))
     end
     if search_task[:priority] != ''
-      expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{task.priority}"))
+      expect(page).to have_content(I18n.t("forms.enum.priority_enum.#{search_task[:priority]}"))
     end
     if search_task[:tag_ids] != ''
-      expect(page).to have_content(task.tags.name)
+      tags = task.tags.map { |d|  d.tagname}.join(', ')
+      expect(page).to have_content(tags.to_s)
     end
   end
 end
