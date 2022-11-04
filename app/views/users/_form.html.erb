@@ -2,7 +2,7 @@
   <div class="max-w-[300px] mx-auto md:w-2/3 my-6">
     <%= form_with(model: user, url: signup_path, class: "contents") do |form| %>
       <% if user.errors.any? %>
-          <div class="text-rose-800 p-2">
+          <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
             <h2>
               <%= pluralize(user.errors.count, "error")%><%= t('forms.error_sentence')%>
             </h2>

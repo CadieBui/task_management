@@ -14,9 +14,20 @@
   <div class="grid justify-items-center max-w-[600px] w-full">
     <% if notice.present? %>
       <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
-        <i class="fa-solid fa-circle-check"></i>      
         <b class="capitalize"><%= notice %></b>
         </span>
+      </div>
+    <% end %>
+    <% if @user.errors.any? %>
+      <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
+        <h2>
+          <%= pluralize(@user.errors.count, "error")%><%= t('forms.error_sentence')%>
+        </h2>
+        <ul>
+          <% @user.errors.full_messages.each do |error| %> 
+            <li><%= error %></li> 
+          <% end %>
+        </ul>
       </div>
     <% end %>
     <%= render @user %>

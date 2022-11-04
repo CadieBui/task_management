@@ -38,6 +38,20 @@
       </span>
     <% end %>
   </div>
+
+  <div class="w-full">
+    <strong>標籤:</strong>
+      <% task.tags.each do |tag| %>
+      <tr class="">
+          <td class="">
+            <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded text-rose-600 bg-rose-200 uppercase last:mr-0 mr-1">
+              <%= tag.tagname%>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+  </div>
+
   <div class="w-full">
     <strong><%= t('forms.field_label.endtime')%>:</strong>
     <%= task.endtime.try(:strftime, "%Y - %m - %d") %>

@@ -1,8 +1,10 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :task_tags, dependent: :destroy
+  has_many :tags, through: :task_tags
 
-  validates :title, :presence => true, :length => { :minimum => 5 }
-  validates :content, :presence => true, :length => { :minimum => 5 }
+  validates :title, :presence => true,:length => { :minimum => 5 }
+  validates :content,  :presence => true,:length => { :minimum => 5 }
 
   enum status: { not_set: 0, pending: 1, inprogress: 2, completed: 3 }
   enum priority: { not_set_priority: 0, high: 1, medium: 2, low: 3 }

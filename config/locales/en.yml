@@ -39,6 +39,7 @@ en:
     signup: "Sign up"
     user_list: "User management"
     user: "User"
+    new_user: "Add new user"
   forms:
     field_label:
       title: "Title"
@@ -50,6 +51,7 @@ en:
       password: "Your password"
       user_name: "User accounts"
       task_number: "User task number"
+      label: "Labels"
     create:
       success: 'Task was successfully created' 
       login_success: "Congratulation! Log in successfully!"
@@ -86,12 +88,22 @@ en:
         high: "High priority"
         medium: "Medium priority"
         low: "Low priority"
+      label_enum:
+        all_label: "All label"
+        not_set_label: "Unset label"
+        work: "Work"
+        study: "Study"
+        personal: "Personal"
+        family: "Family"
     search:
       title: "Search by title"
       status: 'Search by status'
       priority: 'Search by priority'
+      tag: 'Search by tag'
     error_sentence: " prohibited this task from being saved:"
     invalid: "Invalid user name or password"
+    not_admin: "Only admin can access this site"
+    last_admin: "Can not delete because this is a last admin"
   sort:
     created_at: "Sort by create time switch"
 

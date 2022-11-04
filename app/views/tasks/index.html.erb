@@ -1,6 +1,5 @@
 <% if notice %>
   <div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
-    <i class="fa-solid fa-circle-check"></i>      
     <b class="capitalize"><%= notice %></b>
     </span>
   </div>
@@ -28,6 +27,7 @@
       <th><%= t('forms.field_label.content')%></th>
       <th><%= t('forms.field_label.status')%></th>
       <th><%= t('forms.field_label.priority')%></th>
+      <th><%= t('forms.field_label.label')%></th>
       <th><%= t('forms.field_label.endtime')%></th>
     </tr>
   </thead>
@@ -63,6 +63,13 @@
           <% if task.not_set_priority? %>
             <span class="text-xs font-medium inline-block py-1 px-2 uppercase rounded-full text-black bg-gray-200 uppercase last:mr-0 mr-1">
               <%= I18n.t(task.priority, scope: [:forms, :enum, :priority_enum]) %>
+            </span>
+          <% end %>
+        </td>
+        <td class="p-2">
+          <% task.tags.each do |tag| %>
+            <span class="text-s font-semibold inline-block py-1 px-2 uppercase rounded text-rose-600 bg-rose-200 uppercase last:mr-0 mr-1">
+              <%= tag.tagname%>
             </span>
           <% end %>
         </td>

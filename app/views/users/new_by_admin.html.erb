@@ -1,0 +1,36 @@
+<div class="mx-auto md:w-2/3 w-full max-with-[600px]">
+  <h1 class="flex font-bold text-4xl justify-center	my-6"><%= t('page_title.new_user') %></h1>
+
+  <div class="border border-pink-500 rounded-md shadow-md divide-y divide-dotted w-full ">
+    <div class="max-w-[300px] mx-auto md:w-2/3 my-6">
+      <%= form_with(model: @user, url: admin_new_path, class: "contents") do |form| %>
+        <% if @user.errors.any? %>
+            <div class="text-rose-800 p-2">
+              <h2>
+                <%= pluralize(@user.errors.count, "error")%><%= t('forms.error_sentence')%>
+              </h2>
+
+              <ul>
+                <% @user.errors.full_messages.each do |error| %> 
+                  <li><%= error %></li> 
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        <div class="my-5">
+          <%= form.label :username, t('forms.field_label.username') %>
+          <%= form.text_field :username, class:"my-2 caret-purple-200 px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"%>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :password, t('forms.field_label.password') %>
+          <%= form.password_field :password, class:"my-2 caret-purple-200 px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" %>
+        </div>
+
+        <div class="inline">
+          <%= form.submit t('forms.button.new'), class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" %>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div>
