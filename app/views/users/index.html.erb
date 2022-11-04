@@ -1,0 +1,34 @@
+<% if notice.present? %>
+<div class="text-pink-500 px-6 py-4 border-2 rounded relative mb-4 border-pink-500 w-full">
+  <i class="fa-solid fa-circle-check"></i>      
+  <b class="capitalize"><%= notice %></b>
+  </span>
+</div>
+<% end %>
+
+<div class="flex items-center	justify-between	my-6">
+  <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.user_list') %></h1>
+  <%= link_to new_user_path, class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
+    <i class="fa-solid fa-plus"><%= t('forms.button.new_user')%></i>
+  <% end %>
+</div>
+<table id="users" class=" w-full border">
+  <thead >
+    <tr class="divide-x divide-y">
+      <th><%= t('forms.field_label.user_name')%></th>
+      <th><%= t('forms.field_label.task_number')%></th>
+    </tr>
+  </thead>
+  <tbody class="divide-y border-y">
+    <% @users.each do |user| %>
+      <tr class="hover:bg-gray-300 divide-x">
+        <td class="p-2">
+          <%= link_to user.username, user%>
+        </td>
+        <td class="p-2">
+          <%= link_to user.tasks.size, user %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

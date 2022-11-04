@@ -69,4 +69,10 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.file_watcher = ActiveSupport::FileUpdateChecker
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true # logs violations
+    Bullet.add_footer = true # adds footer to view with violation
+  end
 end

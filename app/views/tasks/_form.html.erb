@@ -1,6 +1,6 @@
 <div class="border border-pink-500 rounded-md shadow-md divide-y divide-dotted w-600">
 
-  <%= form_with(model: task,html: {class: ""}) do |form|%>
+  <%= form_with(model: task) do |form|%>
     <% if task.errors.any? %>
       <div class="text-rose-800 p-2">
         <h2>

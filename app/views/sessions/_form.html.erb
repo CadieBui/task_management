@@ -1,0 +1,24 @@
+<div class="border border-pink-500 rounded-md shadow-md divide-y divide-dotted w-full ">
+  <div class="max-w-[300px] mx-auto md:w-2/3 my-6">
+    <%= form_with url: login_path, html: { data: { turbo: false } } do |form| %>
+      <% if notice.present? %>
+        <p class="text-rose-800 p-2" id="notice"><%= notice %></p>
+      <% end %>
+      <div class="my-5">
+        <%= form.label :username , t('forms.field_label.username')%>
+        <%= form.text_field :username, class:"my-2 caret-purple-200 px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :password, t('forms.field_label.password') %>
+        <%= form.password_field :password, class:"my-2 caret-purple-200 px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full" %>
+      </div>
+      <div class="inline">
+        <%= form.submit t('forms.button.login'), class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"%>
+        <%= link_to signup_path, class:"text-red-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do%>
+          <i class="fa-solid fa-heart-circle-plus"><%= t('forms.button.joinus')%></i>
+        <%end%>
+      </div>
+    <% end %>
+  </div>
+

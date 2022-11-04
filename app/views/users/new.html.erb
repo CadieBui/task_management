@@ -1,0 +1,11 @@
+<div class="mx-auto md:w-2/3 w-full max-with-[600px]">
+  <h1 class="flex font-bold text-4xl justify-center	my-6"><%= t('page_title.signup') %></h1>
+
+  <%= render "form", user: @user %>
+  <div class="my-9">
+    <%= link_to login_path, class:"text-red-500  background-transparent font-bold uppercase px-3 py-3 text-lg outline-none focus:outline-none ease-linear transition-all duration-150" do%>
+      <i class="fa-solid fa-right-to-bracket"><%= t('forms.button.login')%></i>
+    <%end%>
+  </div>
+
+</div>
