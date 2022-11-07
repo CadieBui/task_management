@@ -1,9 +1,17 @@
 <div class="mx-auto md:w-2/3 w-full max-with-[600px]">
-  <h1 class="flex font-bold text-4xl justify-center	my-6"><%= t('page_title.new_user') %></h1>
+  <div class="flex items-center	justify-between">
+
+    <h1 class="flex font-bold text-4xl justify-center	my-6"><%= t('page_title.new_user') %></h1>
+    <div>
+      <%= link_to admin_users_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
+        <i class="fa-regular fa-circle-left"><%= t('forms.button.goback') %></i>
+      <% end %> 
+    </div>
+  </div>
 
   <div class="border border-pink-500 rounded-md shadow-md divide-y divide-dotted w-full ">
     <div class="max-w-[300px] mx-auto md:w-2/3 my-6">
-      <%= form_with(model: @user, url: admin_new_path, class: "contents") do |form| %>
+      <%= form_with(model: [:admin, @user], class: "contents") do |form| %>
         <% if @user.errors.any? %>
             <div class="text-rose-800 p-2">
               <h2>

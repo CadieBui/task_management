@@ -5,7 +5,7 @@
 <div class="flex items-center	justify-between	">
   <h1 class="text-3xl font-normal leading-normal mt-0 mb-2 text-pink-800"><%= t('page_title.show_task')%></h1>
   <div class="flex">
-    <%= link_to users_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do%>
+    <%= link_to admin_users_path, class:"text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do%>
     <i class="fa-regular fa-circle-left">  <%=t('forms.button.goback')%></i>
     <% end %>
   </div>
@@ -32,11 +32,11 @@
     <% end %>
     <%= render @user %>
     <div class="flex my-6 justify-between w-full">
-      <%= link_to edit_user_path(@user),class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %> 
+      <%= link_to edit_admin_user_path(@user),class:"bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %> 
         <i class="fa-solid fa-pen-to-square"><%= t('forms.button.edit_user')%></i>
       <% end %>
       
-      <%= button_to user_path(@user), method: :delete, class:"bg-red-500  text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
+      <%= button_to admin_user_path(@user), method: :delete, class:"bg-red-500  text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" do %>
         <i class="fa-solid fa-trash"> <%= t('forms.button.destroy_user')%></i>
       <% end %>
 

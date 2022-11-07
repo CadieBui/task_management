@@ -9,6 +9,7 @@ zh-TW:
     user_list: "使用者管理"
     user: "使用者"
     new_user: "新增使用者"
+    edit_user: "修改使用者"
   forms:
     field_label:
       title: "標題"
@@ -25,6 +26,7 @@ zh-TW:
       success: '任務新增成功！' 
       login_success: "恭喜你！登入成功"
       signup_success: "歡迎加入！"
+      user_success: '使用者新增成功！' 
     edit:
       success: '更新成功' 
     delete:

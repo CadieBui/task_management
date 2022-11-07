@@ -40,6 +40,7 @@ en:
     user_list: "User management"
     user: "User"
     new_user: "Add new user"
+    edit_user: "Edit user"
   forms:
     field_label:
       title: "Title"
@@ -56,6 +57,7 @@ en:
       success: 'Task was successfully created' 
       login_success: "Congratulation! Log in successfully!"
       signup_success: "Welcome to join us!"
+      user_success: "User was successfully created"
     edit:
       success: 'Task was successfully updated' 
     delete:
