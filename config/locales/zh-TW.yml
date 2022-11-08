@@ -8,6 +8,8 @@ zh-TW:
     signup: "註冊"
     user_list: "使用者管理"
     user: "使用者"
+    new_user: "新增使用者"
+    edit_user: "修改使用者"
   forms:
     field_label:
       title: "標題"
@@ -19,14 +21,16 @@ zh-TW:
       password: "密碼"
       user_name: "使用者帳號"
       task_number: "使用者任務數量"
+      label: "標籤"
     create:
       success: '任務新增成功！' 
       login_success: "恭喜你！登入成功"
       signup_success: "歡迎加入！"
+      user_success: '使用者新增成功！' 
     edit:
-      success: '任務更新成功' 
+      success: '更新成功' 
     delete:
-      success: '任務刪除成功' 
+      success: '刪除成功' 
       logout_success: '再見'
     button:
       submit: "確認"
@@ -55,12 +59,22 @@ zh-TW:
         high: "優先度高"
         medium: "優先度中"
         low: "優先度低"
+      label_enum:
+        all_label: "全部"
+        not_set_label: "未設定"
+        work: "工作"
+        study: "讀書"
+        personal: "個人"
+        family: "家庭"
     search:
       title: "搜尋標題"
       status: '搜尋狀態'
-      priority: '搜尋有限度'
+      priority: '搜尋優先度'
+      tag: '搜尋標籤'
     error_sentence: '禁止保存此任務'
     invalid: '帳號或密碼錯誤！'
+    not_admin: '管理者才可以進入管理頁面'
+    last_admin: '無法刪除最後一個管理者'
   sort:
     created_at: "建立時間排序切換"
   activerecord:

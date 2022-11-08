@@ -92,6 +92,72 @@ RSpec.describe "Users", type: :system do
     end
   end
 
+  describe 'admin flow' do
+    let!(:user) { create(:user, password: password) }
+    let!(:user1) { create(:user, username: "AAAA",  password: password) }
+    let!(:user2) { { username: "Username" ,password: password}}
+
+    context 'show users table' do
+      it do
+        visit login_path
+        run_login(user.username, user.password)
+        user.update(:admin => true)
+        visit admin_users_path
+        expect(page).to have_content("使用者管理")
+      end
+    end
+
+    context 'show user table' do
+      it do
+        visit login_path
+        run_login(user.username, user.password)
+        user.update(:admin => true)
+        visit admin_users_path
+        visit admin_user_path(user1.id)
+        expect(page).to have_content("詳細內容")
+      end
+    end
+
+    context 'edit user' do
+      it do
+        visit login_path
+        run_login(user.username, user.password)
+        user.update(:admin => true)
+        visit admin_users_path
+        visit edit_admin_user_path(user1.id)
+        fill_in I18n.t('forms.field_label.username'), with: user1.username
+        fill_in I18n.t('forms.field_label.password'), with: "1111"
+        click_button I18n.t('forms.button.edit_user')
+        expect(page).to have_content("更新成功")
+      end
+    end
+
+    context 'delete user' do
+      it do
+        visit login_path
+        run_login(user.username, user.password)
+        user.update(:admin => true)
+        visit admin_users_path
+        visit admin_user_path(user1.id)
+        click_button I18n.t('forms.button.destroy_user')
+        expect(page).to have_content("刪除成功")
+      end
+    end
+
+    context 'create user' do
+      it do
+        visit login_path
+        run_login(user.username, user.password)
+        user.update(:admin => true)
+        visit new_admin_user_path
+        fill_in I18n.t('forms.field_label.username'), with: user2[:username]
+        fill_in I18n.t('forms.field_label.password'), with: user2[:password]
+        click_button I18n.t('forms.button.new')
+        expect(page).to have_content("使用者新增成功！")
+      end
+    end
+  end
+
   private
 
   def run_signup(username, password)

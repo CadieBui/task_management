@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_28_142401) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_134252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tagname", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tagname"], name: "index_tags_on_tagname", unique: true
+  end
+
+  create_table "task_tags", force: :cascade do |t|
+    t.uuid "task_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_task_tags_on_tag_id"
+    t.index ["task_id"], name: "index_task_tags_on_task_id"
+  end
 
   create_table "tasks", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "title", null: false
@@ -33,7 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_142401) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
   end
 
+  add_foreign_key "task_tags", "tags"
+  add_foreign_key "task_tags", "tasks"
   add_foreign_key "tasks", "users"
 end

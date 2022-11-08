@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   def index
     # TODO: show and search data from Task table
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result.includes(:user).page(params[:page]).per(5)
+    @tasks = @q.result.includes(:tags).page(params[:page]).per(5)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -81,6 +81,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:title, :content, :endtime, :status, :priority)
+    params.require(:task).permit(:title, :content, :endtime, :status, :priority, tag_ids: [])
   end
 end

@@ -6,13 +6,11 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return if session[:user_id].blank?
-
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def authorized
     return if current_user.present?
-
-    redirect_to login_path, alert: "You are already logged in."
+    redirect_to login_path
   end
 end
