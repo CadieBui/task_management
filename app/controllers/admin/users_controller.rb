@@ -1,7 +1,6 @@
 class Admin::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create]
   before_action :set_user, only: %i[show edit update destroy]
-  before_action :admin!, only: [:index]
+  before_action :admin!
 
   # GET /users or /users.json
   def index
@@ -82,8 +81,7 @@ class Admin::UsersController < ApplicationController
   end
   
   def admin!
-    unless current_user && current_user.admin?
-      redirect_to root_path, notice: t('forms.not_admin')
-    end
+    return if current_user&.admin?
+    redirect_to root_path, notice: t('forms.not_admin')
   end
 end
